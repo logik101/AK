@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D4A017'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haitian Konpa Discography</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'konpa-blue': '#1C2A5D',
+              'konpa-bg-timeline': '#f2eee9',
+              'konpa-bg-connect': '#fdf7e6',
+              'konpa-bg-footer': '#fdfaf6',
+              'konpa-bg-search': '#F7F3E5',
+              'konpa-gold': {
+                '50': '#fefbf2',
+                '100': '#fcf6e3',
+                '200': '#faedc5',
+                '300': '#f7e1a0',
+                '400': '#f3d179',
+                '500': '#EFC04E',
+                '600': '#D4A017',
+                '700': '#b88f16',
+                '800': '#9c7d13',
+                '900': '#785f0f',
+                '950': '#453503',
+              },
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.6s ease-out both',
+              'bounce-subtle': 'bounceSubtle 0.5s ease-in-out forwards',
+              'orbit': 'orbit 2.5s linear infinite',
+              'orbit-dot-color': 'orbitDotColor 2.5s linear infinite',
+              'wave-float': 'waveFloat 3s ease-in-out infinite',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: 0, transform: 'translateY(30px)' },
+                '100%': { opacity: 1, transform: 'translateY(0)' },
+              },
+              bounceSubtle: {
+                '0%, 100%': { transform: 'scale(1)' },
+                '50%': { transform: 'scale(1.03)' }
+              },
+              waveFloat: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-5px)' },
+              },
+              orbit: {
+                  'from': { transform: 'rotate(0deg)' },
+                  'to': { transform: 'rotate(360deg)' }
+              },
+              orbitDotColor: {
+                  '0%, 49.9%': { backgroundColor: '#1C2A5D' },
+                  '50%, 99.9%': { backgroundColor: 'white' },
+                  '100%': { backgroundColor: '#1C2A5D' }
+              }
+            },
+          },
+        },
+      }
+    </script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <style>
+      :root {
+        font-family: 'Inter', sans-serif;
+      }
+      @supports (font-variation-settings: normal) {
+        :root { font-family: 'Inter var', sans-serif; }
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .prose h1, .prose h2, .prose h3 {
+        color: #1C2A5D;
+        font-weight: 700;
+      }
+      .prose a {
+        color: #D4A017;
+        transition: color 0.2s ease-in-out;
+      }
+      .prose a:hover {
+        color: #b88f16;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.8.2",
+    "tailwind-merge": "https://aistudiocdn.com/tailwind-merge@^3.3.1",
+    "clsx": "https://aistudiocdn.com/clsx@^2.1.1",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^11.3.19",
+    "@google/genai": "https://esm.sh/@google/genai"
+  }
+}
+</script>
+<script async src="https://js.stripe.com/v3/buy-button.js"></script>
+</head>
+  <body class="bg-gray-50 text-gray-800 antialiased">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
