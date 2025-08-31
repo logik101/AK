@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useData } from '../contexts/DataContext.tsx';
-import { Card, CardContent } from './ui/Card.tsx';
+import { Card } from './ui/Card.tsx';
 import { artistProfiles } from '../assets/artist_profiles.ts';
 import { useArtistProfile } from '../contexts/ArtistProfileContext.tsx';
 import { motion } from 'framer-motion';
@@ -42,11 +42,13 @@ const ArtistGridCard: React.FC<ArtistGridCardProps> = ({ artistName }) => {
 
     const showPlaceholder = !coverUrl || imageHasError;
 
+    const albumCount = artistAlbums.length;
+
     return (
         <motion.div variants={itemVariants}>
             <Link to={`/artists/${encodeURIComponent(artistName)}`} className="block group">
-                <Card className="h-full flex flex-col transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-konpa-blue/10">
-                    <div className="aspect-square relative overflow-hidden rounded-t-lg bg-gray-100">
+                <Card className="overflow-hidden transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-konpa-blue/10">
+                    <div className="aspect-square relative bg-gray-100">
                         {showPlaceholder ? <Placeholder /> : (
                             <img
                                 src={coverUrl}
@@ -55,14 +57,14 @@ const ArtistGridCard: React.FC<ArtistGridCardProps> = ({ artistName }) => {
                                 onError={() => setImageHasError(true)}
                             />
                         )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                         <div className="absolute bottom-0 left-0 p-4 text-white w-full">
+                            <h2 className="font-bold text-lg text-white truncate group-hover:text-konpa-gold-300 transition-colors">{artistName}</h2>
+                            {albumCount > 0 && (
+                                <p className="text-sm text-gray-300">{albumCount} {albumCount > 1 ? 'albums' : 'album'}</p>
+                            )}
+                        </div>
                     </div>
-                    <CardContent className="flex-grow p-4">
-                        <h2 className="font-bold text-lg text-konpa-blue truncate group-hover:text-konpa-gold-700">{artistName}</h2>
-                         <p className="text-sm text-gray-600 mt-1 line-clamp-3 h-[60px]">
-                            {profile?.overview || ''}
-                         </p>
-                    </CardContent>
                 </Card>
             </Link>
         </motion.div>

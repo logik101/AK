@@ -100,6 +100,7 @@ const ArtistDetail = () => {
             const prompt = `Generate a concise artist profile for the Haitian Konpa artist "${artistName}". Provide a brief overview of their career and influence, and a list of 5 of their most popular or representative songs. Format the output as a JSON object.`;
 
             const response = await ai.models.generateContent({
+                // FIX: Per coding guidelines, use 'gemini-2.5-flash' for general text tasks.
                 model: "gemini-2.5-flash",
                 contents: prompt,
                 config: {
