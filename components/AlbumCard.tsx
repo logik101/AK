@@ -16,7 +16,7 @@ const Placeholder = () => (
 );
 
 const ShareIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="18" cy="5" r="3"></circle>
         <circle cx="6" cy="12" r="3"></circle>
         <circle cx="18" cy="19" r="3"></circle>
@@ -26,7 +26,7 @@ const ShareIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const CheckIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="20 6 9 17 4 12"></polyline>
     </svg>
 );
@@ -112,7 +112,7 @@ const AlbumCard: React.FC<AlbumCardProps> = ({ album, onSelect }) => {
             >
               <button
                 onClick={handleShare}
-                className="p-2.5 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm transition-all focus:outline-none focus:ring-2 focus:ring-white"
+                className="p-2.5 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm transition-all focus:outline-none focus:ring-2 focus:ring-white text-white"
                 aria-label="Share album"
               >
                 {copied ? <CheckIcon /> : <ShareIcon />}

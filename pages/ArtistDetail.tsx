@@ -1,4 +1,3 @@
-
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -13,6 +12,7 @@ import { artistProfiles } from '../assets/artist_profiles.ts';
 import ArtistProfileCard from '../components/ArtistProfileCard.tsx';
 import { GoogleGenAI, Type } from "@google/genai";
 import { useArtistProfile } from '../contexts/ArtistProfileContext.tsx';
+import { cn } from '../lib/utils.ts';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -38,6 +38,7 @@ const ArtistDetail = () => {
 
 
     const artistName = decodeURIComponent(name || '');
+    const spotifyArtistUrl = `https://open.spotify.com/search/${encodeURIComponent(artistName)}`;
 
     const staticProfile = useMemo(() => {
         return artistProfiles.find(p => p.artist.toLowerCase() === artistName.toLowerCase());
@@ -152,6 +153,18 @@ const ArtistDetail = () => {
             <div className="mb-8">
                 <Link to="/artists" className="text-kompa-gold-600 hover:underline">&larr; {t('navArtists')}</Link>
                 <h1 className="text-4xl font-bold text-gray-900 mt-2">{artistName}</h1>
+               <a
+                 href={spotifyArtistUrl}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className={cn(
+                   "inline-flex items-center justify-center rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                   "border border-[#1DB954] text-[#1DB954] hover:bg-[#1DB954] hover:text-white h-9 px-4 mt-4 focus-visible:ring-[#1DB954]"
+                 )}
+               >
+                 <svg role="img" width="16" height="16" className="mr-2" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.912 17.44c-.217.325-.633.43-1.02.225-2.625-1.592-5.91-1.95-10.027-.992-.417.092-.71-.184-.8-.592-.092-.408.183-.708.592-.8 4.417-1.025 8.018-.633 10.917.992.39.242.49.7.238 1.167zm1.25-2.733c-.275.4-.8.525-1.233.258-2.95-1.8-7.417-2.325-10.458-1.283-.492.158-.933-.167-1.092-.658-.158-.492.167-.933.658-1.092 3.45-.992 8.358-.417 11.667 1.625.433.267.55.825.258 1.25zm.1-3.25C15.01 8.25 8.91 7.95 5.145 9.083c-.567.167-1.117-.217-1.283-.783-.167-.55.217-1.117.783-1.283 4.25-1.283 10.95-.95 14.583 1.95.525.292.692.958.4 1.483-.292.525-.958.692-1.483.4z"></path></svg>
+                 <span>{t('findOnSpotify')}</span>
+               </a>
             </div>
             
             {displayProfile ? (

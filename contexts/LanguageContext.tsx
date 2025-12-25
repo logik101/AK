@@ -155,7 +155,9 @@ const translations: Translations = {
   // Cookie Consent
   cookieConsentMessage: { en: 'By using this website, you agree with the', fr: 'En utilisant ce site, vous acceptez les', ht: 'Lè w itilize sit wèb sa a, ou dakò ak' },
   cookieConsentLink: { en: 'Terms of Use', fr: 'Conditions d\'utilisation', ht: 'Kondisyon Itilizasyon yo' },
-  cookieConsentAccept: { en: 'OK', fr: 'OK', ht: 'OK' }
+  cookieConsentAccept: { en: 'OK', fr: 'OK', ht: 'OK' },
+  // Spotify
+  findOnSpotify: { en: 'Find on Spotify', fr: 'Trouver sur Spotify', ht: 'Jwenn sou Spotify' },
 };
 
 interface LanguageContextType {

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Album } from '../types/index.ts';
@@ -20,7 +21,7 @@ const Placeholder = () => (
 );
 
 const ShareIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-600 group-hover:text-white transition-colors duration-200">
         <circle cx="18" cy="5" r="3"></circle>
         <circle cx="6" cy="12" r="3"></circle>
         <circle cx="18" cy="19" r="3"></circle>
@@ -30,7 +31,7 @@ const ShareIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const CheckIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-kompa-gold-600">
         <polyline points="20 6 9 17 4 12"></polyline>
     </svg>
 );
@@ -81,6 +82,8 @@ const AlbumDetailsSheet: React.FC<AlbumDetailsSheetProps> = ({ album, onClose })
       }
     }
   };
+  
+  const spotifyUrl = album ? `https://open.spotify.com/search/${encodeURIComponent(`${album.artist} ${album.album}`)}` : '';
 
   const tracksList = album?.tracks
     .split(',')
@@ -145,11 +148,20 @@ const AlbumDetailsSheet: React.FC<AlbumDetailsSheetProps> = ({ album, onClose })
                             <div className="text-xs">Label</div>
                         </div>
                     </div>
-                    <div className="grid grid-cols-1 gap-2">
-                        <Button variant="outline" onClick={handleShare} className="w-full">
-                            {copied ? <CheckIcon className="mr-2" /> : <ShareIcon className="mr-2" />}
-                            <span>{copied ? 'Link Copied!' : 'Share'}</span>
+                    <div className="grid grid-cols-2 gap-2">
+                        <Button variant="outline" onClick={handleShare} className="w-full group">
+                             {copied ? <CheckIcon className="mr-2" /> : <ShareIcon className="mr-2" />}
+                             <span className="text-gray-700 group-hover:text-white transition-colors duration-200">{copied ? 'Link Copied!' : 'Share'}</span>
                         </Button>
+                         <a
+                            href={spotifyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 border border-[#1DB954] text-[#1DB954] hover:bg-[#1DB954] hover:text-white h-10 py-2 px-4 focus-visible:ring-[#1DB954]"
+                         >
+                            <svg role="img" width="16" height="16" className="mr-2" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.912 17.44c-.217.325-.633.43-1.02.225-2.625-1.592-5.91-1.95-10.027-.992-.417.092-.71-.184-.8-.592-.092-.408.183-.708.592-.8 4.417-1.025 8.018-.633 10.917.992.39.242.49.7.238 1.167zm1.25-2.733c-.275.4-.8.525-1.233.258-2.95-1.8-7.417-2.325-10.458-1.283-.492.158-.933-.167-1.092-.658-.158-.492.167-.933.658-1.092 3.45-.992 8.358-.417 11.667 1.625.433.267.55.825.258 1.25zm.1-3.25C15.01 8.25 8.91 7.95 5.145 9.083c-.567.167-1.117-.217-1.283-.783-.167-.55.217-1.117.783-1.283 4.25-1.283 10.95-.95 14.583 1.95.525.292.692.958.4 1.483-.292.525-.958.692-1.483.4z"></path></svg>
+                            <span>{t('findOnSpotify')}</span>
+                         </a>
                     </div>
                 </div>
 
